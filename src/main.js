@@ -2,7 +2,7 @@ const dlg = document.getElementById('contactDialog');
 const openBtn = document.getElementById('openDialog');
 const closeBtn = document.getElementById('closeDialog');
 const form = document.getElementById('contactForm');
-const phone = document.getElementById('phone'); 
+const phone = document.getElementById('phone');
 let lastActive = null;
 openBtn.addEventListener('click', () => {
     lastActive = document.activeElement;
@@ -11,8 +11,8 @@ openBtn.addEventListener('click', () => {
 });
 closeBtn.addEventListener('click', () => dlg.close('cancel'));
 phone?.addEventListener('input', () => {
-    const digits = phone.value.replace(/\D/g, '').slice(0, 11); 
-    const d = digits.replace(/^8/, '7');                       
+    const digits = phone.value.replace(/\D/g, '').slice(0, 11);
+    const d = digits.replace(/^8/, '7');
     const parts = [];
     if (d.length > 0) parts.push('+7');
     if (d.length > 1) parts.push(' (' + d.slice(1, 4));
@@ -47,3 +47,4 @@ form?.addEventListener('submit', (e) => {
     document.getElementById('contactDialog')?.close('success');
     form.reset();
 }); 
+

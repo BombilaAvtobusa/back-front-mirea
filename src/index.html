@@ -1,21 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой первый проект</title>
-    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
-</head>
-<body>
-    <h1>
-        Занимашка
-    </h1>
-    <p>
-        Всем привет кого не видел
-    </p>
-</body>
-=======
 
 <head>
     <meta charset="UTF-8">
@@ -28,14 +12,31 @@
 </head>
 
 <body>
-    <header>
-        <a href="/">There will be LOGO
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.html">Main</a></li>
-                <li><a href="about.html">About US</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
+    <header class="site-header">
+        <a class="site-header__brand" href="/">Logo</a>
+        <aside>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+            <script defer>
+                const KEY = 'theme', btn = document.querySelector('.theme-toggle');
+                const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+                if (localStorage.getItem(KEY) === 'dark' || (!localStorage.getItem(KEY) && prefersDark)) {
+                    document.body.classList.add('theme-dark');
+                    btn?.setAttribute('aria-pressed', 'true');
+                }
+                // Переключение по кнопке с сохранением в localStorage 
+                btn?.addEventListener('click', () => {
+                    const isDark = document.body.classList.toggle('theme-dark');
+                    btn.setAttribute('aria-pressed', String(isDark));
+                    localStorage.setItem(KEY, isDark ? 'dark' : 'light');
+                }); 
+            </script>
+        </aside>
+        <nav class="site-nav" aria-label="Основная навигация">
+            <ul class="site-nav__list">
+                <li class="site-nav__item"><a class="site-nav__link" href="index.html">Main page</a></li>
+                <li class="site-nav__item"><a class="site-nav__link" href="about.html">About Us</a></li>
+                <li class="site-nav__item"><a class="site-nav__link site-nav__link-cta" href="#contacts">Contact Us</a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -55,6 +56,8 @@
                     href="https://music.yandex.ru/track/112632320?utm_source=web&utm_medium=copy_link">ASPHALT 8</a> —
                 <a href="https://music.yandex.ru/artist/3892062">MACAN</a> на Яндекс Музыке</iframe>
         </section>
+        <img src="card-640.jpg" srcset="card-640.jpg 640w, card-640.jpg 960w, card-640.jpg 1280w"
+            sizes="(max-width: 700px) 92vw, (max-width: 1200px) 640px, 960px" alt="Котик" loading="lazy">
         <section id="contacts">
             <h2>Contact info</h2>
             <p>Our contacts...</p>
@@ -62,11 +65,12 @@
         </section>
     </main>
 
+
+
     <footer>
         <p>&copy; 2025 masturbeast. All rights reserved.</p>
         <p>Phone number: 8(800)555-35-35</p>
     </footer>
 </body>
 
->>>>>>> master
 </html>
